@@ -1,0 +1,68 @@
+body{
+  margin-top: 100px;/*  um platz fuer die toolbar oben zu schaffen. da dessen groeße im browser 0x0 ist
+                      wäre gut wenn die Toolbar selbst eine bestimmte höhe hat, sodass dies hier nicht
+                       geschrieben werden muss*/
+}
+
+.profilWrapper {
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+}
+.profil {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.profilPictureWrapper {
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  background-color: #eee;
+  padding: 20px;
+}
+
+.profilPicture {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.profilDetails {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.profilDetailsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  padding: 0 10%;
+}
+hr.hr {
+  border-top: 2px solid #eee;
+}
+.favoriteList {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+th {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+td {
+  border: 1px solid black;
+  padding: 8px;
+}

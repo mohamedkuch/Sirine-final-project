@@ -1,0 +1,81 @@
+<app-toolbar></app-toolbar>
+
+<div class="table-wrapper">
+  <div class="searchBar">
+    <span> 🔍 </span>
+    <input
+      type="text"
+      id="myInput"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="search(searchTerm)"
+      placeholder="Name oder Jahr eingeben..."
+    />
+  </div>
+
+  <div
+    style="text-align: center"
+    *ngIf="searchTerm.length > 0 && filteredData.length === 0; else result"
+  >
+    <h2>-- keine Ergebnisse gefunden --</h2>
+  </div>
+  <ng-template #result>
+    <table id="myTable" class="table-custom">
+      <tr class="header">
+        <th>Name</th>
+        <th style="width: 10%">Als Favorit verlinken</th>
+      </tr>
+
+      <tr *ngFor="let satz of filteredData; let i = index">
+        <td
+          *ngIf="searchTerm.length > 0"
+          class="table-name"
+          (click)="gotoDetail(satz.id)"
+        >
+          {{ satz.name }}
+        </td>
+        <td *ngIf="searchTerm.length > 0" class="table-favorite">
+          <div
+            (click)="onFavoriteClick(i)"
+            style="cursor: pointer; font-size: large"
+            *ngIf="satz.isFavorite"
+          >
+            &#9733;
+          </div>
+          <div
+            (click)="onFavoriteClick(i)"
+            style="cursor: pointer; font-size: large"
+            *ngIf="!satz.isFavorite"
+          >
+            &#9734;
+          </div>
+        </td>
+      </tr>
+
+      <tr *ngFor="let satz of datenArray; let i = index">
+        <td
+          *ngIf="searchTerm.length === 0"
+          class="table-name"
+          (click)="gotoDetail(satz.id)"
+        >
+          {{ satz.name }}
+        </td>
+        <td *ngIf="searchTerm.length === 0" class="table-favorite">
+          <div
+            (click)="onFavoriteClick(i)"
+            style="cursor: pointer; font-size: large"
+            *ngIf="satz.isFavorite"
+          >
+            &#9733;
+          </div>
+          <div
+            (click)="onFavoriteClick(i)"
+            style="cursor: pointer; font-size: large"
+            *ngIf="!satz.isFavorite"
+          >
+            &#9734;
+          </div>
+        </td>
+      </tr>
+    </table>
+  </ng-template>
+</div>

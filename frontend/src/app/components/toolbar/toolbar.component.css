@@ -1,0 +1,42 @@
+.navbar-wrapper {
+  height: 70px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background-color: #1976d2;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.card {
+  font-weight: 500;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  cursor: pointer;
+  color: white;
+  transition: 0.4s all;
+}
+
+.card-active,
+.card:hover {
+  background-color: rgb(48, 141, 241);
+}
+
+.logo {
+  color: white;
+  font-size: x-large;
+  font-weight: bold;
+}
