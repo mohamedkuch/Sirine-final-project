@@ -22,8 +22,11 @@ FROM nginx:1.21.0-alpine
 # Copy the built Angular app from the previous stage to the container
 COPY --from=build /app/dist/sep-so /usr/share/nginx/html
 
+# NGINX Config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 # Expose the port on which the Angular app will be served
-EXPOSE 80
+EXPOSE 4200
 
 # Start Nginx to serve the Angular app
 CMD ["nginx", "-g", "daemon off;"]

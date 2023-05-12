@@ -13,9 +13,6 @@ RUN mvn clean package -DskipTests
 # Use the official openjdk image as the base image
 FROM  openjdk:18
 
-# Set the working directory in the container
-WORKDIR /app
-
 # Copy the built JAR file from the previous stage to the container
 COPY --from=build /app/target/sep-backend.jar .
 
