@@ -23,7 +23,7 @@ td {
 
 .table-wrapper {
   margin: 20px;
-  margin-top: 100px;/*  um platz fuer die toolbar oben zu schaffen. da dessen groeße im browser 0x0 ist
+  margin-top: 100px; /*  um platz fuer die toolbar oben zu schaffen. da dessen groeße im browser 0x0 ist
                       wäre gut wenn die Toolbar selbst eine bestimmte höhe hat, sodass dies hier nicht
                        geschrieben werden muss*/
 }
@@ -44,21 +44,21 @@ td {
   justify-content: center;
   gap: 5px;
 
-span {
-  margin-left: 10px;
-  font-size: large;
-}
+  span {
+    margin-left: 10px;
+    font-size: large;
+  }
 
-input {
-  padding: 8px;
-  border: none;
-  border-radius: 4px;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 16px;
-  background-color: transparent;
-&:focus {
-   outline: none;
- }
-}
+  input {
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: transparent;
+    &:focus {
+      outline: none;
+    }
+  }
 }

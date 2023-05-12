@@ -1,16 +1,18 @@
 <app-toolbar></app-toolbar>
 
-<div style="margin: 20px; margin-top: 100px;">
+<div style="margin: 20px; margin-top: 100px">
   <table>
     <thead>
-    <tr>
-      <th *ngFor="let key of itemKeys">{{ key }}</th>
-    </tr>
+      <tr>
+        <th *ngFor="let key of itemKeys">{{ key }}</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let row of itemValues">
-      <td *ngFor="let value of row">{{ value }}</td>
-    </tr>
+      <tr *ngFor="let row of itemValues; let i = index">
+        <td *ngFor="let value of row; let j = index">
+          <input type="text" [ngModel]="row[j]"  />
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

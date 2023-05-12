@@ -4,7 +4,7 @@ import {DataSetService} from "../../../services/data-set.service";
 @Component({
   selector: 'app-single-data-set',
   templateUrl: './single-data-set.component.html',
-  styleUrls: ['./single-data-set.component.css']
+  styleUrls: ['./single-data-set.component.scss']
 })
 export class SingleDataSetComponent {
   id: string;
