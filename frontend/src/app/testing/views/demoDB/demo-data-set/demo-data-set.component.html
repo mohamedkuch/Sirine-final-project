@@ -1,0 +1,22 @@
+<div>
+  <form (ngSubmit)="onSubmit()">
+    <input #fileInput type="file" name="file" (change)="onFileSelect($event)">
+    <button type="submit">Upload</button>
+  </form>
+</div>
+<section>
+<table>
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let dataSet of dataSetList">
+      <td>{{ dataSet.id }}</td>
+      <td>{{ dataSet.name }}</td>
+    </tr>
+  </tbody>
+</table>
+</section>

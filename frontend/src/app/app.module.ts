@@ -15,6 +15,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { SingleDataSetComponent } from './views/dataset-window/single-data-set/single-data-set.component';
 import { ProfilWindowComponent } from './views/profil-window/profil-window.component';
 import { TestWindowComponent } from './testing/views/test-window/test-window.component';
+import { DemoDataSetComponent } from './testing/views/demoDB/demo-data-set/demo-data-set.component';
+
+import { DemoDataSetService} from "./testing/views/demoDB/demo-data-set/demo-data-set.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +29,7 @@ import { TestWindowComponent } from './testing/views/test-window/test-window.com
     SingleDataSetComponent,
     ProfilWindowComponent,
     TestWindowComponent,
+    DemoDataSetComponent
 
   ],
   imports: [
@@ -34,7 +39,7 @@ import { TestWindowComponent } from './testing/views/test-window/test-window.com
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [DemoDataSetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

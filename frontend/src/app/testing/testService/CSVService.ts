@@ -13,7 +13,7 @@ export class CSVService {
    }
 
   public getCSVlist(){
-    return this.http.get<TestCSV[]>(this.baseURI+'/CSV/data')
+    return this.http.get<TestCSV[]>(this.baseURI+'/VornamenNeuGeborenen/alleVornamen')
   }
 
 

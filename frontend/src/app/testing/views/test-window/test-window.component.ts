@@ -24,10 +24,13 @@ export class TestWindowComponent {
   }
 
   ngOnInit():void{
+
     this.updateCSVLIst();
     this.updateAdminList();
     this.updateUserList();
+
   }
+
 
   adminList: Admin[]|any;
   userList: User[]|any;

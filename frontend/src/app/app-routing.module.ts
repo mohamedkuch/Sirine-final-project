@@ -6,6 +6,7 @@ import {RegisterWindowComponent} from "./views/register-window/register-window.c
 import {DatasetWindowComponent} from "./views/dataset-window/dataset-window.component";
 import {SingleDataSetComponent} from "./views/dataset-window/single-data-set/single-data-set.component";
 import {ProfilWindowComponent} from "./views/profil-window/profil-window.component";
+import {DemoDataSetComponent} from "./testing/views/demoDB/demo-data-set/demo-data-set.component";
 
 //testing
 import { TestWindowComponent } from './testing/views/test-window/test-window.component';
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path: 'datasets', component: DatasetWindowComponent},
   {path: 'datasets/:id', component: SingleDataSetComponent},
   {path: 'profil', component: ProfilWindowComponent},
-  {path: 'testWindow', component: TestWindowComponent}
+  {path: 'testWindow', component: TestWindowComponent},
+  {path: 'testData', component: DemoDataSetComponent}
 
 ];
 

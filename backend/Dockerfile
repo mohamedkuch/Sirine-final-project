@@ -19,7 +19,7 @@ COPY --from=build /app/target/sep-backend.jar .
 # Set environment variables for Postgres configuration
 ENV SPRING_DATASOURCE_URL=jdbc:postgresql://db:3333/postgres
 ENV SPRING_DATASOURCE_USERNAME=postgres
-ENV SPRING_DATASOURCE_PASSWORD=mohamed01
+ENV SPRING_DATASOURCE_PASSWORD=admin
 
 # Expose the port on which the application will run
 EXPOSE 8080

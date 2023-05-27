@@ -7,17 +7,17 @@ import {TestObject} from "../Models/testObject"
 })
 export class TestServiceService {
 
-  private baseURI:String = "http://localhost:8080";
+  private baseURI:String = "http://localhost:8080/test";
   constructor(private http:HttpClient) { }
 
   public getTestObjectList(){
-    return this.http.get<TestObject[]>(this.baseURI+'/test/getTestObjectList' );
+    return this.http.get<TestObject[]>(this.baseURI+'/getTestObjectList' );
   }
 
   public createTestObject(testobject: TestObject){
-    return this.http.post(this.baseURI+'/test/newTestObject', testobject, {responseType: 'text'});
+    return this.http.post(this.baseURI+'/newTestObject', testobject, {responseType: 'text'});
   }
   public getBackendText(){
-    return this.http.get(this.baseURI+'/test/text',{responseType: 'text'});
+    return this.http.get(this.baseURI+'/text',{responseType: 'text'});
   }
 }

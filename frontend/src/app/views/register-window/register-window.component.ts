@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import {RegistrationServiceService} from "../../services/registration-service.service"
 
 import {Admin } from "../../Models/Admin";
