@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginService {
-  public backendURL = 'http://localhost:8080/api/v1/auth';
+  public backendURL = 'http://localhost:8080/api/v1/';
 
   constructor(private http: HttpClient) {}
 
@@ -19,7 +19,7 @@ export class LoginService {
       password: password,
     };
 
-    let url = this.backendURL + '/login';
+    let url = this.backendURL + 'auth/login';
 
     return this.http.post<any>(url, requestBody);
   }
@@ -31,6 +31,12 @@ export class LoginService {
   public getToken() {
     return localStorage.getItem('token');
   }
+
+  public getCurrentUser(): Observable<any> {
+    let url = this.backendURL + 'users/me';
+    return this.http.get(url);
+  }
+
   // public twoFactorCheckUser(
   //   email: string,
   //   password: string,
