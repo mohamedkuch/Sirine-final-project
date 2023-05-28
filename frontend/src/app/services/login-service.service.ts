@@ -1,28 +1,81 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpStatusCode, HttpResponse} from "@angular/common/http";
-import {Observable} from "rxjs";
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class LoginServiceService {
+export class LoginService {
+  public backendURL = 'http://localhost:8080/api/v1/auth';
 
-  private baseURI:String = "http://localhost:8080/login";
-  constructor(private http:HttpClient) { }
-  //User
-  public loginUser(email:string,password:string): Observable<HttpResponse<any>>{
-     return this.http.post<any>(this.baseURI+'/User/'+email+'/'+password,null , {observe:'response'});
-  }
-  public twoFactorCheckUser(email:string,password:string,twoFactorCode:number):Observable<HttpResponse<any>>{
-    return this.http.post<any>(this.baseURI+'/User/verify/'+email+'/'+password+'/'+twoFactorCode,null , {observe:'response'});
-  }
+  constructor(private http: HttpClient) {}
 
-  //Admin
-  public loginAdmin(email:string,password:string): Observable<HttpResponse<any>>{
-    return this.http.post<any>(this.baseURI+'/Admin/'+email+'/'+password,null , {observe:'response'});
-  }
+  public loginUser(
+    email: string,
+    password: string
+  ): Observable<HttpResponse<any>> {
+    const requestBody = {
+      email: email,
+      password: password,
+    };
 
-  public twoFactorCheckAdmin(email:string,password:string,twoFactorCode:number):Observable<HttpResponse<any>>{
-    return this.http.post<any>(this.baseURI+'/Admin/verify/'+email+'/'+password+'/'+twoFactorCode,null , {observe:'response'});
+    let url = this.backendURL + '/login';
+
+    return this.http.post<any>(url, requestBody);
   }
 
+  public loggedIn() {
+    return !!localStorage.getItem('token');
+  }
+
+  public getToken() {
+    return localStorage.getItem('token');
+  }
+  // public twoFactorCheckUser(
+  //   email: string,
+  //   password: string,
+  //   twoFactorCode: number
+  // ): Observable<HttpResponse<any>> {
+  //   return this.http.post<any>(
+  //     this.baseURI +
+  //       '/User/verify/' +
+  //       email +
+  //       '/' +
+  //       password +
+  //       '/' +
+  //       twoFactorCode,
+  //     null,
+  //     { observe: 'response' }
+  //   );
+  // }
+
+  // //Admin
+  // public loginAdmin(
+  //   email: string,
+  //   password: string
+  // ): Observable<HttpResponse<any>> {
+  //   return this.http.post<any>(
+  //     this.baseURI + '/Admin/' + email + '/' + password,
+  //     null,
+  //     { observe: 'response' }
+  //   );
+  // }
+
+  // public twoFactorCheckAdmin(
+  //   email: string,
+  //   password: string,
+  //   twoFactorCode: number
+  // ): Observable<HttpResponse<any>> {
+  //   return this.http.post<any>(
+  //     this.baseURI +
+  //       '/Admin/verify/' +
+  //       email +
+  //       '/' +
+  //       password +
+  //       '/' +
+  //       twoFactorCode,
+  //     null,
+  //     { observe: 'response' }
+  //   );
+  // }
 }

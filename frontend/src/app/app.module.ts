@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginWindowComponent } from './views/login-window/login-window.component';
@@ -17,7 +17,9 @@ import { ProfilWindowComponent } from './views/profil-window/profil-window.compo
 import { TestWindowComponent } from './testing/views/test-window/test-window.component';
 import { DemoDataSetComponent } from './testing/views/demoDB/demo-data-set/demo-data-set.component';
 
-import { DemoDataSetService} from "./testing/views/demoDB/demo-data-set/demo-data-set.service";
+import { DemoDataSetService } from './testing/views/demoDB/demo-data-set/demo-data-set.service';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptor } from './token.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,17 +31,24 @@ import { DemoDataSetService} from "./testing/views/demoDB/demo-data-set/demo-dat
     SingleDataSetComponent,
     ProfilWindowComponent,
     TestWindowComponent,
-    DemoDataSetComponent
-
+    DemoDataSetComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [DemoDataSetService],
-  bootstrap: [AppComponent]
+  providers: [
+    DemoDataSetService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
