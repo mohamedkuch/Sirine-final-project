@@ -1,62 +1,60 @@
 <app-toolbar></app-toolbar>
 
-<body>
-  <div class="profilWrapper">
-    <div class="profil">
-      <div class="profilPictureWrapper">
-        <img src="../../assets/default_profile.jpg" class="profilPicture" />
-      </div>
-      <div class="profilDetailsWrapper">
-        <div class="profilDetails">
-          <h3>Vorname:</h3>
-          <h3>Max</h3>
-        </div>
-
-        <hr class="hr" />
-
-        <div class="profilDetails">
-          <h3>Nachname:</h3>
-          <h3>Mustermann</h3>
-        </div>
-
-        <hr class="hr" />
-
-        <div class="profilDetails">
-          <h3>Geburtsdatum:</h3>
-          <h3>05/11/1992</h3>
-        </div>
-
-        <hr class="hr" />
-
-        <div class="profilDetails">
-          <h3>Anschrift:</h3>
-          <h3>Musterstrasse 1, 12345 Musterstadt</h3>
-        </div>
-
-        <hr class="hr" />
-
-        <div class="profilDetails">
-          <h3>Telefon:</h3>
-          <h3>01234 567890</h3>
-        </div>
-      </div>
+<div class="profilWrapper">
+  <div class="profil">
+    <div class="profilPictureWrapper">
+      <img src="../../assets/default_profile.jpg" class="profilPicture" />
     </div>
-    <div class="favoriteList">
-      <div style="width: 100%">
-        <h3>Favoritenliste:</h3>
-        <table id="myTable">
-          <tr *ngFor="let satz of datenArray; let i = index">
-            <td *ngIf="satz.isFavorite">
-              {{ satz.name }}
-            </td>
-            <td style="width: 10%" *ngIf="satz.isFavorite">
-              <div style="cursor: pointer; font-size: large; text-align: center">
-                &#9733;
-              </div>
-            </td>
-          </tr>
-        </table>
+    <div class="profilDetailsWrapper">
+      <div class="profilDetails">
+        <h3>Vorname:</h3>
+        <h3>Max</h3>
+      </div>
+
+      <hr class="hr" />
+
+      <div class="profilDetails">
+        <h3>Nachname:</h3>
+        <h3>Mustermann</h3>
+      </div>
+
+      <hr class="hr" />
+
+      <div class="profilDetails">
+        <h3>Geburtsdatum:</h3>
+        <h3>05/11/1992</h3>
+      </div>
+
+      <hr class="hr" />
+
+      <div class="profilDetails">
+        <h3>Anschrift:</h3>
+        <h3>Musterstrasse 1, 12345 Musterstadt</h3>
+      </div>
+
+      <hr class="hr" />
+
+      <div class="profilDetails">
+        <h3>Telefon:</h3>
+        <h3>01234 567890</h3>
       </div>
     </div>
   </div>
-</body>
+  <div class="favoriteList">
+    <div style="width: 100%">
+      <h3>Favoritenliste:</h3>
+      <table id="myTable">
+        <tr *ngFor="let satz of datenArray; let i = index">
+          <td *ngIf="satz.isFavorite">
+            {{ satz.name }}
+          </td>
+          <td style="width: 10%" *ngIf="satz.isFavorite">
+            <div style="cursor: pointer; font-size: large; text-align: center">
+              &#9733;
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

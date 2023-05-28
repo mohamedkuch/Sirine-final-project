@@ -25,11 +25,17 @@ public class DataSetService {
 
     private final static List<DataSet> DATA_SET_LIST = Arrays.asList(
             DataSet.builder().id(1L).name("Vornamen von Neugeborenen in der Stadt Aachen 2021")
-                    .fileName("aachenvornamen2021.csv").build(),
+                    .fileName("aachenvornamen.csv").build(),
             DataSet.builder().id(2L).name("Anzahl der Arbeitssuchenden in der Städteregion Aachen")
-                    .fileName("arbeitsuchende-erwerbsfahige-leistungsberechtigte_19.csv").build(),
+                    .fileName("ArbeitsSuchendeAachen.csv").build(),
             DataSet.builder().id(3L).name("Anzahl der Arbeitslosen in der Städteregion Aachen")
-                    .fileName("arbeitslose-erwerbsfahige-leistungsberechtigte_20.csv").build()
+                    .fileName("ArbeitsLose22.csv").build(),
+            DataSet.builder().id(4L).name("Straßenliste Stadt Aachen")
+                    .fileName("strassennamen.csv").build(),
+            DataSet.builder().id(5L).name("Sterbefälle der Stadt Aachen nach Monat, 2015-2021")
+                    .fileName("sterbefalle-monatlich-2015-2022.csv").build(),
+            DataSet.builder().id(6L).name("Geburten der Stadt Aachen nach Monat, 2015-2021")
+                    .fileName("geburten-monatlich-2015_2022.csv").build()
     );
 
     @PostConstruct

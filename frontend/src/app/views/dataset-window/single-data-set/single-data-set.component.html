@@ -1,14 +1,16 @@
-<div style="margin: 20px">
+<app-toolbar></app-toolbar>
+
+<div style="margin: 100px 20px">
   <table>
     <thead>
-    <tr>
-      <th *ngFor="let key of itemKeys">{{ key }}</th>
-    </tr>
+      <tr>
+        <th *ngFor="let key of itemKeys">{{ key }}</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let row of itemValues">
-      <td *ngFor="let value of row">{{ value }}</td>
-    </tr>
+      <tr *ngFor="let row of itemValues">
+        <td *ngFor="let value of row">{{ value }}</td>
+      </tr>
     </tbody>
   </table>
 </div>

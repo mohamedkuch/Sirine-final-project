@@ -1,10 +1,10 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable, map } from "rxjs";
-import { DataSet } from "../Models/DataSet";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, map } from 'rxjs';
+import { DataSet } from '../Models/DataSet';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class DataSetService {
   public backendURL = 'http://localhost:8080/api/v1/datasets';
@@ -30,7 +30,7 @@ export class DataSetService {
   }
 
   getSingleDataSet(id: string): Observable<any> {
-    let url = "../../assets/data-set-single-example-" + id + ".json";
+    let url = this.backendURL + '/' + id;
     return this.http.get(url);
   }
 }
