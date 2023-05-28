@@ -1,6 +1,5 @@
 package com.example.demo.config;
 
-import com.example.demo.dao.UserDao;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,11 +21,12 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 
-    private final UserDao userDao;
-    private final JwtUtils jwtUtils;
+    private final JwtService jwtService;
+    private final UserDetailsService userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
         final String authHeader = request.getHeader(AUTHORIZATION);
         final String userEmail;
         final String jwtToken;
@@ -36,11 +36,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             return;
         }
         jwtToken = authHeader.substring(7);
-        userEmail = jwtUtils.extractUsername(jwtToken);
+        userEmail = jwtService.extractUsername(jwtToken);
 
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userDao.findUserByEmail(userEmail);
-            if (jwtUtils.isTokenValid(jwtToken, userDetails)) {
+            UserDetails userDetails = userDetailsService.loadUserByUsername(userEmail);
+            if (jwtService.isTokenValid(jwtToken, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
