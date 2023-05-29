@@ -2,9 +2,17 @@ package com.example.demo.dataset;
 
 import com.example.demo.dto.DataSetDTO;
 import com.example.demo.user.User;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +23,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +46,10 @@ public class DataSetService {
             DataSet.builder().id(5L).name("Sterbefälle der Stadt Aachen nach Monat, 2015-2021")
                     .fileName("sterbefalle-monatlich-2015-2022.csv").build(),
             DataSet.builder().id(6L).name("Geburten der Stadt Aachen nach Monat, 2015-2021")
-                    .fileName("geburten-monatlich-2015_2022.csv").build()
+                    .fileName("geburten-monatlich-2015_2022.csv").build(),
+            DataSet.builder().id(7L).name("Mittlere Jahresbevölkerung nach Geschlecht - kreisfreieStädte und Kreise")
+                    .fileName("Mittlere_Jahresbevölkerung_nach_Geschlecht_kreisfreieStädte_und_Kreise.xml").build()
+
     );
 
     @PostConstruct
@@ -85,5 +97,34 @@ public class DataSetService {
                 .readValues(resource.getInputStream());
 
         return iterator.readAll();
+    }
+
+    public  Map<String, Object> readXML(Resource resource) throws IOException {
+        // Create xml mapper
+        XmlMapper xmlMapper = new XmlMapper();
+
+        // Read XML
+        JsonNode node = xmlMapper.readTree(resource.getInputStream());
+
+        // Convert to JSON
+        ObjectMapper jsonMapper = new ObjectMapper();
+
+        // Convert JsonNode to JSON string
+        String jsonString = jsonMapper.writeValueAsString(node);
+
+        // Convert JSON string to Map
+        Map<String, Object> resultMap = jsonMapper.readValue(jsonString, new TypeReference<Map<String, Object>>() {});
+
+        return resultMap;
+
+    }
+
+    public String getFileExtension(Path path) {
+        String filename = path.getFileName().toString();
+        int dotIndex = filename.lastIndexOf('.');
+        if(dotIndex > 0 && dotIndex < filename.length() - 2) {
+            return filename.substring(dotIndex + 1);
+        }
+        return "";
     }
 }

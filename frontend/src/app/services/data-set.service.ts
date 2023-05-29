@@ -29,7 +29,7 @@ export class DataSetService {
   }
 
   getSingleDataSet(id: string): Observable<any> {
-    let url = this.backendURL + '/' + id;
+    let url = this.backendURL + 'datasets/' + id;
     return this.http.get(url);
   }
 
