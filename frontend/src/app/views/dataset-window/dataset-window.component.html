@@ -35,14 +35,14 @@
         </td>
         <td *ngIf="searchTerm.length > 0" class="table-favorite">
           <div
-            (click)="onFavoriteClick(i)"
+            (click)="onRemoveFavoriteClick(i)"
             style="cursor: pointer; font-size: large"
             *ngIf="satz.isFavorite"
           >
             &#9733;
           </div>
           <div
-            (click)="onFavoriteClick(i)"
+            (click)="onSetFavoriteClick(i)"
             style="cursor: pointer; font-size: large"
             *ngIf="!satz.isFavorite"
           >
@@ -61,14 +61,14 @@
         </td>
         <td *ngIf="searchTerm.length === 0" class="table-favorite">
           <div
-            (click)="onFavoriteClick(i)"
+            (click)="onRemoveFavoriteClick(i)"
             style="cursor: pointer; font-size: large"
             *ngIf="satz.isFavorite"
           >
             &#9733;
           </div>
           <div
-            (click)="onFavoriteClick(i)"
+            (click)="onSetFavoriteClick(i)"
             style="cursor: pointer; font-size: large"
             *ngIf="!satz.isFavorite"
           >

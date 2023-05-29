@@ -1,5 +1,7 @@
 package com.example.demo.dataset;
 
+import com.example.demo.dto.DataSetDTO;
+import com.example.demo.user.User;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
@@ -53,6 +55,13 @@ public class DataSetService {
         return dataSetRepository.findAll();
     }
 
+    public DataSetDTO convertToDTO(DataSet dataset, User user) {
+        DataSetDTO datasetDTO = new DataSetDTO();
+        datasetDTO.setId(dataset.getId());
+        datasetDTO.setName(dataset.getName());
+        datasetDTO.setFavorite(user.getFavoriteDatasets().contains(dataset));
+        return datasetDTO;
+    }
 
     public List<Map<String, String>> readCSV(Resource resource) throws IOException {
 

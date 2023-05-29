@@ -1,5 +1,6 @@
 package com.example.demo.user;
 
+import com.example.demo.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -25,5 +26,9 @@ public class UserService {
         userDTO.setRole(user.getRole());
 
         return userDTO;
+    }
+
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 }

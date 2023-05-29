@@ -1,5 +1,6 @@
-package com.example.demo.user;
+package com.example.demo.dto;
 
+import com.example.demo.user.Role;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
