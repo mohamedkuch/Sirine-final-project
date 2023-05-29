@@ -3,7 +3,10 @@
 <div class="profilWrapper">
   <div class="profil">
     <div class="profilPictureWrapper">
-      <img src="../../assets/default_profile.jpg" class="profilPicture" />
+      <img
+        [src]="(currentUser$ | async)?.profilePicture"
+        class="profilPicture"
+      />
     </div>
     <div class="profilDetailsWrapper">
       <div class="profilDetails">

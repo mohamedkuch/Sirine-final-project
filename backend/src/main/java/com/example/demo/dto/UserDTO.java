@@ -23,6 +23,7 @@ public class UserDTO {
     private String address;
     private String profilePicture;
     private Date birthday;
+    private Boolean isFriendListPublic;
 
     @Enumerated(EnumType.STRING)
     private Role role;

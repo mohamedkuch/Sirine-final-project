@@ -35,6 +35,7 @@ public class User implements UserDetails {
     private String profilePicture;
     private Date birthday;
     private int twoFactorAuth;
+    private Boolean isFriendListPublic;
 
 
     @Enumerated(EnumType.STRING)

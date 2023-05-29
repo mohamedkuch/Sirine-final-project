@@ -59,7 +59,7 @@
                 />
               </div>
               <div class="field padding-bottom--24">
-                <button (click)="submit()" class="loginButton">
+                <button (click)="submit()" [disabled]="isLoading" class="loginButton">
                   <span *ngIf="!isLoading">Login</span>
                   <div class="spinner" *ngIf="isLoading"></div>
                 </button>

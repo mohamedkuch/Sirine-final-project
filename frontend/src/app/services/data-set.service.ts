@@ -18,7 +18,7 @@ export class DataSetService {
           const dataSet: DataSet = {
             id: item.id,
             name: item.name,
-            isFavorite: item.favorite,
+            isFavorite: item.isFavorite,
             isXML: item.isXML,
             isCSV: item.isCSV,
           };

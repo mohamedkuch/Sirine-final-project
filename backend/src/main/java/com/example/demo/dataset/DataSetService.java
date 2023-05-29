@@ -71,7 +71,7 @@ public class DataSetService {
         DataSetDTO datasetDTO = new DataSetDTO();
         datasetDTO.setId(dataset.getId());
         datasetDTO.setName(dataset.getName());
-        datasetDTO.setFavorite(user.getFavoriteDatasets().contains(dataset));
+        datasetDTO.setIsFavorite(user.getFavoriteDatasets().contains(dataset));
         return datasetDTO;
     }
 

@@ -57,7 +57,5 @@ export class DatasetWindowComponent {
     this.filteredData = this.datenArray.filter((item) =>
       item.name.toLowerCase().includes(term.toLowerCase())
     );
-    console.log('#### search', this.searchTerm);
-    console.log('#### search', this.filteredData);
   }
 }

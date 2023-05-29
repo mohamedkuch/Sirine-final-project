@@ -39,6 +39,9 @@
   color: white;
   font-size: x-large;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .logoutButtonWrapper {
   color: white;
@@ -54,4 +57,11 @@
 }
 .logoutButton:hover {
   background-color: rgb(188, 1, 1);
+}
+.role {
+  font-size: 12px !important;
+  background-color: rgb(58, 58, 58);
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-left: 10px;
 }

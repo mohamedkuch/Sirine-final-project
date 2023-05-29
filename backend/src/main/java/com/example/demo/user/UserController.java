@@ -5,11 +5,11 @@ import com.example.demo.dataset.DataSetService;
 import com.example.demo.dto.UserDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -23,7 +23,6 @@ public class UserController {
     private DataSetService dataSetService;
 
     @GetMapping("/me")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<UserDTO> getMyAccount(Principal principal) {
         User user = userService.getUserDetails(principal.getName());
         UserDTO userDTO = userService.convertToDTO(user);
@@ -48,4 +47,12 @@ public class UserController {
         userService.saveUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping("/")
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
+        List<UserDTO> result = userService.getAllUsers();
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+
 }

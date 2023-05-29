@@ -14,5 +14,5 @@ public class DataSetDTO {
     private Long id;
     private String name;
     private String fileName;
-    private boolean isFavorite;
+    private Boolean isFavorite;
 }
