@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,6 +19,10 @@ public class UserDTO {
     private String firstname;
     private String lastname;
     private String email;
+    private String phone;
+    private String address;
+    private String profilePicture;
+    private Date birthday;
 
     @Enumerated(EnumType.STRING)
     private Role role;

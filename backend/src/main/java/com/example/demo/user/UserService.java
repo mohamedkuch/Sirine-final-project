@@ -24,6 +24,10 @@ public class UserService {
         userDTO.setFirstname(user.getFirstname());
         userDTO.setLastname(user.getLastname());
         userDTO.setRole(user.getRole());
+        userDTO.setBirthday(user.getBirthday());
+        userDTO.setPhone(user.getPhone());
+        userDTO.setAddress(user.getAddress());
+        userDTO.setProfilePicture(user.getProfilePicture());
 
         return userDTO;
     }

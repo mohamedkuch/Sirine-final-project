@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -29,6 +30,11 @@ public class User implements UserDetails {
     private String lastname;
     private String email;
     private String password;
+    private String phone;
+    private String address;
+    private String profilePicture;
+    private Date birthday;
+
 
     @Enumerated(EnumType.STRING)
     private Role role;

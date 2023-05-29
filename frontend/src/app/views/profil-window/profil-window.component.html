@@ -8,35 +8,44 @@
     <div class="profilDetailsWrapper">
       <div class="profilDetails">
         <h3>Vorname:</h3>
-        <h3>Max</h3>
+        <h3>{{ (currentUser$ | async)?.firstname }}</h3>
       </div>
 
       <hr class="hr" />
 
       <div class="profilDetails">
         <h3>Nachname:</h3>
-        <h3>Mustermann</h3>
+        <h3>{{ (currentUser$ | async)?.lastname }}</h3>
       </div>
 
       <hr class="hr" />
 
       <div class="profilDetails">
         <h3>Geburtsdatum:</h3>
-        <h3>05/11/1992</h3>
+        <h3>{{ (currentUser$ | async)?.birthday }}</h3>
       </div>
 
       <hr class="hr" />
 
       <div class="profilDetails">
         <h3>Anschrift:</h3>
-        <h3>Musterstrasse 1, 12345 Musterstadt</h3>
+        <h3>{{ (currentUser$ | async)?.address }}</h3>
       </div>
 
       <hr class="hr" />
 
       <div class="profilDetails">
         <h3>Telefon:</h3>
-        <h3>01234 567890</h3>
+        <h3>{{ (currentUser$ | async)?.phone }}</h3>
+      </div>
+      <hr class="hr" />
+      <div class="profilDetails">
+        <h3>Role:</h3>
+        <h3>
+          {{
+            (currentUser$ | async)?.role === UserRole.USER ? "USER" : "ADMIN"
+          }}
+        </h3>
       </div>
     </div>
   </div>

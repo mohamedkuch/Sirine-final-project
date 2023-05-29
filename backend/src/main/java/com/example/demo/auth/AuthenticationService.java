@@ -14,6 +14,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
+import java.util.Date;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -63,6 +66,10 @@ public class AuthenticationService {
         defaultUser.setPassword(passwordEncoder.encode("1234"));
         defaultUser.setFirstname("Muster");
         defaultUser.setLastname("Mann");
+        defaultUser.setBirthday(new Date());
+        defaultUser.setAddress("Musterstrasse 1, 12345 Musterstadt");
+        defaultUser.setPhone("01234 567890");
+        defaultUser.setProfilePicture("https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
         defaultUser.setRole(Role.USER);
 
         userRepository.save(defaultUser);

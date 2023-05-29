@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { DataSet } from '../../Models/DataSet';
 import { DataSetService } from '../../services/data-set.service';
 import { LoginService } from 'src/app/services/login-service.service';
+import { User } from 'src/app/Models/User';
+import { Observable } from 'rxjs';
+import { UserRole } from 'src/app/Models/Role';
 @Component({
   selector: 'app-profil-window',
   templateUrl: './profil-window.component.html',
@@ -9,21 +12,15 @@ import { LoginService } from 'src/app/services/login-service.service';
 })
 export class ProfilWindowComponent {
   datenArray: Array<DataSet> = [];
-  currentUser: any;
+  currentUser$: Observable<User> = new Observable<User>();
+
+  UserRole = UserRole;
   constructor(
     private dataSetService: DataSetService,
     private loginService: LoginService
   ) {
     this.getData();
-
-    this.loginService.getCurrentUser().subscribe({
-      next: (data) => {
-        console.log('##### ', data);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    this.currentUser$ = this.loginService.getCurrentUser();
   }
 
   getData(): void {
