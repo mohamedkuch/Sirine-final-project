@@ -17,11 +17,14 @@
           <div class="formbg-inner padding-horizontal--48">
             <span class="padding-bottom--15">Log in to your account</span>
 
-            <span class="error-message padding-bottom--15" *ngIf="errorText > ''">
+            <span
+              class="error-message padding-bottom--15"
+              *ngIf="errorText > ''"
+            >
               {{ errorText }}
             </span>
 
-            <form id="stripe-login" (ngSubmit)="login()">
+            <form id="stripe-login">
               <div class="field padding-bottom--24">
                 <label>Email</label>
                 <input
@@ -35,9 +38,6 @@
               <div class="field padding-bottom--24">
                 <div class="grid--50-50">
                   <label>Password</label>
-                  <div class="reset-pass">
-                    <!--<a href="#">Forgot your password?</a>-->
-                  </div>
                 </div>
                 <input
                   type="password"
@@ -47,13 +47,22 @@
                   required
                 />
               </div>
-              <div class="field padding-bottom--24">
+              <div class="field padding-bottom--24" *ngIf="showTwoFactor">
+                <div class="grid--50-50">
+                  <label>Two Factor Code:</label>
+                </div>
                 <input
-                  style="background-color: blue"
-                  type="submit"
-                  name="submit"
-                  value="Login"
+                  type="text"
+                  [(ngModel)]="twoFactor"
+                  id="twoFactor"
+                  name="twoFactor"
                 />
+              </div>
+              <div class="field padding-bottom--24">
+                <button (click)="submit()" class="loginButton">
+                  <span *ngIf="!isLoading">Login</span>
+                  <div class="spinner" *ngIf="isLoading"></div>
+                </button>
               </div>
             </form>
           </div>

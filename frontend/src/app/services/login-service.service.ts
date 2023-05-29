@@ -14,6 +14,22 @@ export class LoginService {
 
   public loginUser(
     email: string,
+    password: string,
+    twoFactor: string
+  ): Observable<HttpResponse<any>> {
+    const requestBody = {
+      email: email,
+      password: password,
+      twoFactorAuth: twoFactor,
+    };
+
+    let url = this.backendURL + 'auth/login';
+
+    return this.http.post<any>(url, requestBody);
+  }
+
+  twoFactorAuth(
+    email: string,
     password: string
   ): Observable<HttpResponse<any>> {
     const requestBody = {
@@ -21,8 +37,7 @@ export class LoginService {
       password: password,
     };
 
-    let url = this.backendURL + 'auth/login';
-
+    let url = this.backendURL + 'auth/twoFactor';
     return this.http.post<any>(url, requestBody);
   }
 

@@ -13,6 +13,9 @@ export class LoginWindowComponent {
   password: string = '';
 
   errorText: string = '';
+  showTwoFactor: boolean = false;
+  twoFactor: string = '';
+  isLoading: boolean = false;
 
   constructor(private loginService: LoginService, private router: Router) {
     if (this.loginService.loggedIn()) {
@@ -20,15 +23,46 @@ export class LoginWindowComponent {
     }
   }
 
+  submit() {
+    if (this.showTwoFactor) {
+      this.login();
+    } else {
+      this.twoFactorAuth();
+    }
+  }
+
   login() {
-    this.loginService.loginUser(this.email, this.password).subscribe({
+    this.loginService
+      .loginUser(this.email, this.password, this.twoFactor)
+      .subscribe({
+        next: (res: any) => {
+          console.log('#### login next', res);
+
+          // save token in local storage
+          localStorage.setItem('token', res['token']);
+          this.router.navigate(['/datasets']);
+          this.errorText = '';
+        },
+        error: (err: any) => {
+          this.errorText = 'Error : Invalid email or password';
+
+          if (err && err.error && err.error.message) {
+            this.errorText = 'Error: ' + err.error.message;
+          }
+        },
+      });
+  }
+
+  twoFactorAuth() {
+    this.isLoading = true;
+    this.loginService.twoFactorAuth(this.email, this.password).subscribe({
       next: (res: any) => {
-        // save token in local storage
-        localStorage.setItem('token', res['token']);
-        this.router.navigate(['/datasets']);
+        this.isLoading = false;
         this.errorText = '';
+        this.showTwoFactor = true;
       },
       error: () => {
+        this.isLoading = false;
         this.errorText = 'Error : Invalid email or password';
       },
     });

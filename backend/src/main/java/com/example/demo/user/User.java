@@ -34,6 +34,7 @@ public class User implements UserDetails {
     private String address;
     private String profilePicture;
     private Date birthday;
+    private int twoFactorAuth;
 
 
     @Enumerated(EnumType.STRING)

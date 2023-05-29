@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AuthenticationController {
 
-
     private final AuthenticationService service;
 
     @PostMapping("/register")
@@ -26,10 +25,17 @@ public class AuthenticationController {
         return ResponseEntity.ok(service.register(request, true));
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> authenticate(
+    @PostMapping("/twoFactor")
+    public ResponseEntity<?> authenticate(
             @RequestBody AuthenticationRequest request
     ) {
-        return ResponseEntity.ok(service.login(request));
+        return service.twoFactor(request);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthenticationResponse> login(
+            @RequestBody LoginRequest request
+    ) {
+        return service.login(request);
     }
 }

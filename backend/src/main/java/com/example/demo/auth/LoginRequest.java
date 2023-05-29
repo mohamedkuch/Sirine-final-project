@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AuthenticationRequest {
-
+public class LoginRequest {
     private String email;
     private String password;
+    private int twoFactorAuth;
 }
