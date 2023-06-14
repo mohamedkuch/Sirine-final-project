@@ -1,16 +1,9 @@
 <app-toolbar></app-toolbar>
+<div class="singleDataWrapper">
+  <h3>Diagram</h3>
+  <div id="barchart"></div>
 
-<div style="margin: 100px 20px">
-  <table>
-    <thead>
-      <tr>
-        <th *ngFor="let key of itemKeys">{{ key }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let row of itemValues">
-        <td *ngFor="let value of row">{{ value }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <h3 style="margin-top: 50px;">Tree Map</h3>
+
+  <div id="treemap"></div>
 </div>

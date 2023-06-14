@@ -1,22 +1,91 @@
+<app-toolbar></app-toolbar>
+<div class="topBox">
+  <p>Datensätze</p>
+  <button id="openUploadButton">Upload Dataset</button>
+  <dialog  id="uploadDatasetDialog">
+    <p>Upload</p>
+    <form (ngSubmit)="onSubmit()">
+      <input #fileInput type="file" name="file" accept=".csv, .xml" (change)="onFileSelect($event)">
+    </form>
+    <div class="dialogBottomBox">
+      <button id="uploadDatasetButton" type="submit">Upload</button>
+    </div>
+  </dialog>
+</div>
+<!--
 <div>
   <form (ngSubmit)="onSubmit()">
-    <input #fileInput type="file" name="file" (change)="onFileSelect($event)">
+    <input #fileInput type="file" name="file" accept=".csv, .xml" (change)="onFileSelect($event)">
     <button type="submit">Upload</button>
   </form>
 </div>
-<section>
-<table>
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let dataSet of dataSetList">
-      <td>{{ dataSet.id }}</td>
-      <td>{{ dataSet.name }}</td>
-    </tr>
-  </tbody>
-</table>
-</section>
+-->
+
+<div class="tableGraphic">
+  <div class="topTableGraphic">
+    <button (click)="updateDataSetList()">update</button>
+
+    <div id="textSearch">
+      <input id="textSearchInput" type="text" [(ngModel)]="searchText">
+      <button id="textSearchButton" (click)="updateDataSetListSearched()">Search</button>
+    </div>
+
+    <!--
+    <div id="sortBy">
+      <button id="sortByName">Name</button>
+      <button id="sortByID">ID</button>
+    </div>
+    -->
+  </div>
+
+  <section>
+    <div id="sortBy">
+      <button id="sortByName">Name</button>
+      <button id="sortByID">ID</button>
+    </div>
+    <div id="tableContainer">
+      <table>
+        <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let dataSetInfo of dataSetListDisplayed">
+          <td>{{ dataSetInfo[0] }}</td>
+          <td ><button class="routing button" (click)="getDataset(dataSetInfo[0])">{{ dataSetInfo[1] }}</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+
+
+  <!--
+  -----------------------------------------------------------------------------
+  <button (click)="updateDataSetListTest()">update</button>
+  <section>
+    <table>
+      <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">name</th>
+        <th scope="col">format</th>
+        <th scope="col">filename</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let dataSetInfo of dataSetListTest">
+        <td>{{ dataSetInfo.id }}</td>
+        <td>{{ dataSetInfo.name }}</td>
+        <td>{{ dataSetInfo.format }}</td>
+        <td>{{ dataSetInfo.filename }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+  -->

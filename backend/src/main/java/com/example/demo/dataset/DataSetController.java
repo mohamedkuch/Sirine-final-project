@@ -1,13 +1,7 @@
 package com.example.demo.dataset;
 
 import com.example.demo.dto.DataSetDTO;
-import com.example.demo.user.User;
-import com.example.demo.user.UserService;
-import com.fasterxml.jackson.databind.MappingIterator;
-import com.fasterxml.jackson.dataformat.csv.CsvMapper;
-import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.MediaType;
@@ -33,15 +27,18 @@ public class DataSetController {
     private final DataSetService dataSetService;
     private final ResourceLoader resourceLoader;
 
-    @Autowired
-    private UserService userService;
+    /*
+        @Autowired
+        private UserService userService;
+     */
+
 
     @GetMapping
     public ResponseEntity<List<DataSetDTO>> getAllDatasets(Principal principal) {
-        User user = userService.getUserDetails(principal.getName());
+     //   User user = userService.getUserDetails(principal.getName());
         List<DataSet> datasets = dataSetService.getAllDatasets();
         List<DataSetDTO> datasetDTOs = datasets.stream()
-                .map(dataset -> dataSetService.convertToDTO(dataset, user))
+                .map(dataset -> dataSetService.convertToDTO(dataset))
                 .collect(Collectors.toList());
         return new ResponseEntity<>(datasetDTOs, HttpStatus.OK);
     }

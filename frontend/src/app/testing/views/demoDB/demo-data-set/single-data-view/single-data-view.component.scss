@@ -1,0 +1,80 @@
+table, th , td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+
+
+.changeDialog {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 80%;
+  height: 80%;
+  border-radius: 15px;
+
+
+  .buttonBox {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
+.changeDialog::backdrop {
+  background-color: #212d63;
+  opacity: 70%;
+}
+
+.bottomRowDiv {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background: rgb(2,0,36);
+  background: linear-gradient(156deg, rgba(2,0,36,1) 0%, rgba(29,29,74,1) 35%, rgba(95,187,224,1) 100%);
+
+  button {
+
+  }
+
+  #openChangeData {
+    float: right;
+    right: 0;
+  }
+}
+
+.topBox {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    font-size: 20px;
+    flex: 1; /* Allows the text to expand and fill the remaining space */
+    margin-right: 10px; /* Adds some space between the text and the button */
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+}
+
+
+.tableGraphic {
+  margin: 0px 6% 100px;
+
+
+}

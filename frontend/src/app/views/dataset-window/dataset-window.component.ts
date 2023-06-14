@@ -27,26 +27,8 @@ export class DatasetWindowComponent {
     this.isButtonClicked = !this.isButtonClicked;
   }
 
-  onSetFavoriteClick(index: number) {
-    this.dataSetService.setFavoriteDataSet(
-      this.datenArray[index].id.toString()
-    ).subscribe({
-      next: () => {
-        this.datenArray[index].isFavorite = true;
-      },
-      error: (err) => console.log('Error setting favorite')
-    })
-  }
-
-  onRemoveFavoriteClick(index: number) {
-    this.dataSetService.RemoveFavoriteDataSet(
-      this.datenArray[index].id.toString()
-    ).subscribe({
-      next: () => {
-        this.datenArray[index].isFavorite = false;
-      },
-      error: (err) => console.log('Error deleting favorite')
-    })
+  onFavoriteClick(index: number) {
+    this.datenArray[index].isFavorite = !this.datenArray[index].isFavorite;
   }
 
   gotoDetail(id: number) {
@@ -57,5 +39,7 @@ export class DatasetWindowComponent {
     this.filteredData = this.datenArray.filter((item) =>
       item.name.toLowerCase().includes(term.toLowerCase())
     );
+    console.log('#### search', this.searchTerm);
+    console.log('#### search', this.filteredData);
   }
 }

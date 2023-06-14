@@ -1,0 +1,39 @@
+  <section>
+    <div class="topBox">
+      <p>Name FILLER</p>
+      <button (click)="onFavoriteClick(id)" class="favorite-button">
+        Set as Favorite:
+        <div style="cursor: pointer; font-size: large" *ngIf="isFavoriteDataset">&#9733;</div>
+        <div style="cursor: pointer; font-size: large" *ngIf="!isFavoriteDataset">&#9734;</div>
+      </button>
+    </div>
+    <table class="tableGraphic">
+      <thead>
+        <tr>
+         <th *ngFor="let header of jsonData[0] | keyvalue"> {{header.key}} </th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr *ngFor="let row of jsonData">
+          <td *ngFor="let cell of row | keyvalue">{{ cell.value }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <dialog id="changeDataWindow" class="changeDialog">
+      <form>
+        <json-editor [options]="editorOptions" [data]="jsonData">
+        </json-editor>
+      </form>
+      <div class="buttonBox">
+        <button id="sendChange" class="dialogButtons">Save Change</button>
+        <button id="closeChangeData" class="dialogButtons">Close</button>
+      </div>
+    </dialog>
+
+    <div class="bottomRowDiv">
+      <button id="supportTicket">Support Ticket</button>
+      <button id="openChangeData">Change Data</button>
+    </div>
+
+
+  </section>

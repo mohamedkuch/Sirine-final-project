@@ -1,5 +1,10 @@
+body{
+  margin-top: 100px;/*  um platz fuer die toolbar oben zu schaffen. da dessen groeße im browser 0x0 ist
+                      wäre gut wenn die Toolbar selbst eine bestimmte höhe hat, sodass dies hier nicht
+                       geschrieben werden muss*/
+}
+
 .profilWrapper {
-  margin-top: 100px;
   width: 100%;
   padding: 0 20px;
   display: flex;

@@ -1,3 +1,4 @@
+<body>
 <div class="login-root">
   <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
     <div class="loginbackground box-background--white padding-top--64">
@@ -94,10 +95,10 @@
 
               <div class="field padding-bottom--24" *ngIf="isUser">
                 <label class="input_label">Profilbild</label>
-                <input type="text" [(ngModel)]="profilbild"
+                <input type="file" (change)="onFileSelected($event)" accept="image/*"
                        id="profilpicture"
                        name="profilpicture"
-                       required>
+                       >
               </div>
 
               <div class="field padding-bottom--24">
@@ -113,3 +114,4 @@
     </div>
   </div>
 </div>
+</body>

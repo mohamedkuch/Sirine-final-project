@@ -1,0 +1,188 @@
+table, th , td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+
+//-------------------- TOP BOX --------------------
+.topBox {
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    font-size: 30px;
+  }
+  margin-top: 70px;/*  um platz fuer die toolbar oben zu schaffen. da dessen groeße im browser 0x0 ist
+                      wäre gut wenn die Toolbar selbst eine bestimmte höhe hat, sodass dies hier nicht
+                       geschrieben werden muss*/
+  #openUploadButton {
+    margin-right: 0px;
+    margin-top: 0px;
+    border-radius: 0px 0px 0px 40px;
+  }
+
+
+
+  //-------------------- DIALOG --------------------
+  #uploadDatasetDialog {
+    height: 60%;
+    width: 60%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+
+    border-radius: 15px;
+    border-color: #5469d4;
+
+    padding: 10px;
+
+    p {
+      font-size: 20px;
+      margin: 5px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Centers the form horizontally */
+    }
+
+    .dialogBottomBox {
+      display: flex;
+      justify-content: center; /* Centers the button horizontally */
+      align-items: center; /* Centers the button vertically */
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      background-color: #5469d4;
+    }
+  }
+
+
+  #uploadDatasetDialog::backdrop {
+    background-color: #25455a;
+    background-image: linear-gradient(160deg, #25455a 0%, #65c5dc 55%, #3978c9 100%);
+    opacity: 0.8;
+
+  }
+}
+
+//-------------------- TABELLE --------------------
+.tableGraphic {
+  margin: 0% 8% 0% 8%;
+
+  .topTableGraphic {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+
+
+  }
+}
+
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+    #sortBy {
+      display: flex;
+      width: 200px;
+      margin-bottom: 0px !important;
+
+      #sortByName {
+        font-family: Roboto, sans-serif;
+        font-weight: 0;
+        font-size: 14px;
+        color: #fff;
+        background-color: #1e90ff;
+        padding: 10px 30px;
+        border: none;
+        box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+        border-radius: 50px 0px 0px;
+        transition : 500ms;
+        transform: translateY(0);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+        text-transform: lowercase;
+        margin-right: 0px;
+        margin-bottom: 0px;
+
+
+      }
+
+      #sortByName:hover {
+        transition : 500ms;
+        padding: 10px 40px;
+        transform : translateY(-0px);
+        background-color: #7ec1ff;
+        color: #ffffff;
+
+      }
+
+      #sortByID {
+        position: absolute;
+        left: 50%;
+        font-family: Roboto, sans-serif;
+        font-weight: 0;
+        font-size: 14px;
+        color: #fff;
+        background-color: #1e90ff;
+        padding: 10px 30px;
+        border: none;
+        box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+        border-radius: 0px 50px 0px 0px;
+        transition : 500ms;
+        transform: translateY(0);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+        text-transform: lowercase;
+        margin-left: 0px;
+        margin-bottom: 0px;
+      }
+      #sortByID:hover {
+        transition : 500ms;
+        padding: 10px 40px;
+        transform : translateY(-0px);
+        background-color: #7ec1ff;
+        color: #ffffff;
+
+      }
+
+
+    }
+
+    #tableContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0px;
+    }
+
+    table {
+      min-width: 400px;
+      border-collapse: collapse;
+
+    }
+  }
+
+

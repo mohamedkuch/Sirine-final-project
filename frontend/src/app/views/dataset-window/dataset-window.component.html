@@ -35,14 +35,14 @@
         </td>
         <td *ngIf="searchTerm.length > 0" class="table-favorite">
           <div
-            (click)="onRemoveFavoriteClick(i)"
+            (click)="onFavoriteClick(i)"
             style="cursor: pointer; font-size: large"
             *ngIf="satz.isFavorite"
           >
             &#9733;
           </div>
           <div
-            (click)="onSetFavoriteClick(i)"
+            (click)="onFavoriteClick(i)"
             style="cursor: pointer; font-size: large"
             *ngIf="!satz.isFavorite"
           >
@@ -58,17 +58,20 @@
           (click)="gotoDetail(satz.id)"
         >
           {{ satz.name }}
+          <span style="font-size: 12px;">
+            {{ satz.isXML ? " - (XML) " : " - (CSV) " }}
+          </span>
         </td>
         <td *ngIf="searchTerm.length === 0" class="table-favorite">
           <div
-            (click)="onRemoveFavoriteClick(i)"
+            (click)="onFavoriteClick(i)"
             style="cursor: pointer; font-size: large"
             *ngIf="satz.isFavorite"
           >
             &#9733;
           </div>
           <div
-            (click)="onSetFavoriteClick(i)"
+            (click)="onFavoriteClick(i)"
             style="cursor: pointer; font-size: large"
             *ngIf="!satz.isFavorite"
           >

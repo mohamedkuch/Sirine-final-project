@@ -1,22 +1,22 @@
 <div class="navbar-wrapper">
-  <div class="logo">
-    SEP - Group I
+  <div class="logo">SEP - Group I</div>
+    <div class="navbar">
 
-    <span class="role">{{
-      (currentUser$ | async)?.role === UserRole.USER ? "USER" : "ADMIN"
-    }}</span>
-  </div>
-  <div class="navbar">
-    <div class="card" routerLink="/datasets" routerLinkActive="card-active">
-      <span>Datensätze</span>
-    </div>
+      <div class="card" routerLink="/testData" routerLinkActive="card-active">
+        <span>Datensätze-Lukas</span>
+      </div>
 
-    <div class="card" routerLink="/profil" routerLinkActive="card-active">
-      <span>Profil</span>
-    </div>
+      <div class="card" routerLink="/datasets" routerLinkActive="card-active">
+        <span>Datensätze-Sirine</span>
+      </div>
 
-    <div class="logoutButtonWrapper">
-      <span class="logoutButton" (click)="onLogout()">Logout</span>
-    </div>
+      <div class="card" routerLink="/profil" routerLinkActive="card-active">
+        <span>Profil</span>
+      </div>
+
+      <div class="card">
+        <button (click)="login()" *ngIf="!loggedIn">login </button>
+        <button (click)="logout()" style="background-color:red" *ngIf="loggedIn">logout </button>
+      </div>
   </div>
 </div>

@@ -1,18 +1,13 @@
 package com.example.demo.dataset;
 
 import com.example.demo.dto.DataSetDTO;
-import com.example.demo.user.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -47,8 +42,8 @@ public class DataSetService {
                     .fileName("sterbefalle-monatlich-2015-2022.csv").build(),
             DataSet.builder().id(6L).name("Geburten der Stadt Aachen nach Monat, 2015-2021")
                     .fileName("geburten-monatlich-2015_2022.csv").build(),
-            DataSet.builder().id(7L).name("Mittlere Jahresbevölkerung nach Geschlecht - kreisfreieStädte und Kreise")
-                    .fileName("Mittlere_Jahresbevölkerung_nach_Geschlecht_kreisfreieStädte_und_Kreise.xml").build()
+            DataSet.builder().id(7L).name("Vornamen von Neugeborenen 2022")
+                    .fileName("Vornamen_von_Neugeborenen_2022.xml").build()
 
     );
 
@@ -67,13 +62,25 @@ public class DataSetService {
         return dataSetRepository.findAll();
     }
 
-    public DataSetDTO convertToDTO(DataSet dataset, User user) {
+    /*
+        public DataSetDTO convertToDTO(DataSet dataset, User user) {
         DataSetDTO datasetDTO = new DataSetDTO();
         datasetDTO.setId(dataset.getId());
         datasetDTO.setName(dataset.getName());
         datasetDTO.setIsFavorite(user.getFavoriteDatasets().contains(dataset));
         return datasetDTO;
     }
+     */
+
+
+    public DataSetDTO convertToDTO(DataSet dataset) {
+        DataSetDTO datasetDTO = new DataSetDTO();
+        datasetDTO.setId(dataset.getId());
+        datasetDTO.setName(dataset.getName());
+        datasetDTO.setFileName(dataset.getFileName());
+        return datasetDTO;
+    }
+
 
     public List<Map<String, String>> readCSV(Resource resource) throws IOException {
 

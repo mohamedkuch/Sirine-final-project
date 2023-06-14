@@ -7,20 +7,20 @@ import { DataSet } from '../Models/DataSet';
   providedIn: 'root',
 })
 export class DataSetService {
-  public backendURL = 'http://localhost:8080/api/v1/';
-
   constructor(private http: HttpClient) {}
 
   getDataSetList(): Observable<DataSet[]> {
-    return this.http.get(this.backendURL + 'datasets').pipe(
+    // work with local data and update logic in the future to get the data via the endpoint
+    return this.http.get('http://localhost:8080/api/v1/datasets').pipe(
       map((response: any) => {
         return response.map((item: any) => {
           const dataSet: DataSet = {
             id: item.id,
             name: item.name,
             isFavorite: item.isFavorite,
-            isXML: item.isXML,
-            isCSV: item.isCSV,
+            fileName: item.fileName,
+            isXML: item.fileName.endsWith('.xml'),
+            isCSV: item.fileName.endsWith('.csv'),
           };
           return dataSet;
         });
@@ -29,23 +29,7 @@ export class DataSetService {
   }
 
   getSingleDataSet(id: string): Observable<any> {
-    let url = this.backendURL + 'datasets/' + id;
+    let url = 'http://localhost:8080/api/v1/datasets/' + id;
     return this.http.get(url);
-  }
-
-  setFavoriteDataSet(id: string): Observable<any> {
-    let url = this.backendURL + 'users/me/favorites';
-    let params = {
-      id: id,
-    };
-    return this.http.post<any>(url, params);
-  }
-
-  RemoveFavoriteDataSet(id: string): Observable<any> {
-    let url = this.backendURL + 'users/me/favorites';
-    let params = {
-      id: id,
-    };
-    return this.http.delete<any>(url, { body: params });
   }
 }
