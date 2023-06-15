@@ -16,6 +16,9 @@ export class SingleDataSetComponent implements OnInit {
   item: any;
   itemKeys: string[] = [];
   itemValues: [] = [];
+  selectedKey: string = '';
+  selectedValue: string = '';
+  treeMapData: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,19 +32,29 @@ export class SingleDataSetComponent implements OnInit {
 
   getData() {
     this.dataSetService.getSingleDataSet(this.id).subscribe((data) => {
-      let dataChildren = data[0].hasOwnProperty('row') ? data[0]['row'] : data;
+      let finalData = data[0].hasOwnProperty('row') ? data[0]['row'] : data;
+
+      let dataChildren = finalData;
 
       if (dataChildren.length > 100) {
         dataChildren = dataChildren.slice(0, 100);
       }
-      let treeMapData;
-      treeMapData = {
+      this.itemKeys = Object.keys(finalData[0]);
+      this.selectedKey = this.itemKeys[0];
+      this.selectedValue = this.itemKeys[0];
+
+      this.itemValues = finalData.map((obj: any) => Object.values(obj));
+
+      this.treeMapData = {
         name: 'Root',
         children: dataChildren,
       };
-      this.createTreemap(treeMapData);
-      this.createBarChart(treeMapData);
     });
+  }
+
+  onSubmit() {
+    this.createBarChart(this.treeMapData);
+    this.createTreemap(this.treeMapData);
   }
 
   private createBarChart(treeMapData: any) {
@@ -55,17 +68,18 @@ export class SingleDataSetComponent implements OnInit {
       .attr('width', width)
       .attr('height', height);
 
-    const filteredData = treeMapData.children.filter(
-      (d: any) => typeof d.anzahl !== 'undefined'
-    );
+    const filteredData = treeMapData.children;
+
+    let keys = Object.keys(filteredData[0]);
 
     const xScale = d3
       .scaleBand()
-      .domain(filteredData.map((d: any) => d.vorname))
+      .domain(filteredData.map((d: any) => d[this.selectedKey]))
       .range([0, width])
       .padding(0.1);
 
-    const maxValue = d3.max(filteredData, (d: any) => Number(d.anzahl)) || 0;
+    const maxValue =
+      d3.max(filteredData, (d: any) => Number(d[this.selectedValue])) || 0;
     const yScale = d3.scaleLinear().domain([0, maxValue]).range([height, 0]);
 
     svg
@@ -73,10 +87,13 @@ export class SingleDataSetComponent implements OnInit {
       .data(filteredData)
       .enter()
       .append('rect')
-      .attr('x', (d: any) => xScale(d.vorname)!)
-      .attr('y', (d: any) => yScale(Number(d.anzahl)))
+      .attr('x', (d: any) => xScale(d[this.selectedKey])!)
+      .attr('y', (d: any) => yScale(Number(d[this.selectedValue])))
       .attr('width', xScale.bandwidth())
-      .attr('height', (d: any) => height - yScale(Number(d.anzahl)))
+      .attr(
+        'height',
+        (d: any) => height - yScale(Number(d[this.selectedValue]))
+      )
       .attr('fill', 'steelblue');
 
     svg
@@ -84,9 +101,12 @@ export class SingleDataSetComponent implements OnInit {
       .data(filteredData)
       .enter()
       .append('text')
-      .text((d: any) => `${d.vorname} (${d.anzahl})`)
-      .attr('x', (d: any) => xScale(d.vorname)! + xScale.bandwidth() / 2)
-      .attr('y', (d: any) => yScale(Number(d.anzahl)) - 5)
+      .text((d: any) => `${d[this.selectedKey]} (${d[this.selectedValue]})`)
+      .attr(
+        'x',
+        (d: any) => xScale(d[this.selectedKey])! + xScale.bandwidth() / 2
+      )
+      .attr('y', (d: any) => yScale(Number(d[this.selectedValue])) - 5)
       .attr('text-anchor', 'middle')
       .style('fill', 'black');
   }
@@ -104,7 +124,7 @@ export class SingleDataSetComponent implements OnInit {
 
     const root = d3
       .hierarchy(treeMapData)
-      .sum((d: any) => d.anzahl) // Update this line to use the correct key for the value property
+      .sum((d: any) => d[this.selectedValue]) // Update this line to use the correct key for the value property
       .sort((a, b) => (b.value || 0) - (a.value || 0)); // Update this line to use the correct key for the value property
 
     treemapLayout(root);
@@ -132,7 +152,7 @@ export class SingleDataSetComponent implements OnInit {
       .append('text')
       .attr('dx', 4)
       .attr('dy', 14)
-      .text((d: any) => d.data.vorname) // Update this line to use the correct key for the name property
+      .text((d: any) => d.data[this.selectedKey]) // Update this line to use the correct key for the name property
       .style('fill', 'black');
   }
 }

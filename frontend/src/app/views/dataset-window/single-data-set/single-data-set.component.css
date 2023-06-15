@@ -1,3 +1,23 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.tableWrapper {
+  width: 90%;
+  height: 800px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 .singleDataWrapper {
   width: 100%;
   display: flex;
@@ -6,7 +26,9 @@
   align-items: center;
   margin-top: 100px;
 }
-
+select {
+  padding: 1rem;
+}
 #treemap,
 #barchart {
   width: 1000px;

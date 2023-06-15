@@ -20,6 +20,7 @@ export class DatasetWindowComponent {
   getData(): void {
     this.dataSetService.getDataSetList().subscribe((data) => {
       this.datenArray = data;
+
     });
   }
 
@@ -29,6 +30,12 @@ export class DatasetWindowComponent {
 
   onFavoriteClick(index: number) {
     this.datenArray[index].isFavorite = !this.datenArray[index].isFavorite;
+
+    if (this.datenArray[index].isFavorite) {
+      localStorage.setItem(`dataset${index}`, index.toString());
+    } else {
+      localStorage.removeItem(`dataset${index}`);
+    }
   }
 
   gotoDetail(id: number) {
@@ -39,7 +46,5 @@ export class DatasetWindowComponent {
     this.filteredData = this.datenArray.filter((item) =>
       item.name.toLowerCase().includes(term.toLowerCase())
     );
-    console.log('#### search', this.searchTerm);
-    console.log('#### search', this.filteredData);
   }
 }

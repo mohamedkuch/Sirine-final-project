@@ -13,11 +13,12 @@ export class DataSetService {
     // work with local data and update logic in the future to get the data via the endpoint
     return this.http.get('http://localhost:8080/api/v1/datasets').pipe(
       map((response: any) => {
-        return response.map((item: any) => {
+        return response.map((item: any, index: any) => {
+          console.log('####', index);
           const dataSet: DataSet = {
             id: item.id,
             name: item.name,
-            isFavorite: item.isFavorite,
+            isFavorite: !!localStorage.getItem(`dataset${index}`),
             fileName: item.fileName,
             isXML: item.fileName.endsWith('.xml'),
             isCSV: item.fileName.endsWith('.csv'),
